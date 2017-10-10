@@ -11,13 +11,14 @@ This page shows how to use install kubeadm.
 {% capture prerequisites %}
 
 * One or more machines running Ubuntu 16.04+, Debian 9, CentOS 7, RHEL 7, Fedora 25/26 (best-effort) or HypriotOS v1.0.1+
+* At least 2CPU on the master
+* AMD64 processors (if you intend to use Calico as your network plugin)
 * 1GB or more of RAM per machine (any less will leave little room for your apps)
 * Full network connectivity between all machines in the cluster (public or private network is fine)
 * Unique MAC address and product_uuid for every node
 * Certain ports are open on your machines. See the section below for more details
 * Swap disabled. You must disable swap in order for the kubelet to work properly.
-* Set `/proc/sys/net/bridge/bridge-nf-call-iptables` to `1` by running `sysctl net.bridge.bridge-nf-call-iptables=1`
-to pass bridged IPv4 traffic to iptables' chains. This is a requirement for CNI plugins to work, for more information
+* If you're not using Calico or Canal as a network plugin, set `/proc/sys/net/bridge/bridge-nf-call-iptables` to `1` by running `sysctl net.bridge.bridge-nf-call-iptables=1` to pass bridged IPv4 traffic to iptables' chains. Some CNI plugins require this (not Calico or Canal), for more information
 please see [here](https://kubernetes.io/docs/concepts/cluster-administration/network-plugins/#network-plugin-requirements).
 
 {% endcapture %}
